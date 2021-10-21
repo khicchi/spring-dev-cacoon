@@ -14,6 +14,6 @@ public class MyApp {
 
         System.out.println("Memory Location for the course1:" + course1);
 
-        System.out.println("Memory Location for the course1:" + course2);
+        System.out.println("Memory Location for the course2:" + course2);
     }
 }
