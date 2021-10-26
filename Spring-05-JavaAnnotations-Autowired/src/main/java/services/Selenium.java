@@ -1,6 +1,6 @@
 package services;
 
-import com.cybertek.interfaces.Course;
+import interfaces.Course;
 import org.springframework.stereotype.Component;
 
 @Component
