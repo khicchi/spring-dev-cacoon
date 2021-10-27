@@ -1,4 +1,4 @@
-import interfaces.Course;
+import com.lespania.interfaces.Course;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

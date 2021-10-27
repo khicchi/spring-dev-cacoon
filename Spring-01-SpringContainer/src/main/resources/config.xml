@@ -4,9 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="fullTimeMentor" class="services.FullTimeMentor"></bean>
+    <bean id="fullTimeMentor" class="com.lespania.services.FullTimeMentor"></bean>
 
-    <bean id="partTimeMentor" class="services.PartTimeMentor" ></bean>
+    <bean id="partTimeMentor" class="com.lespania.services.PartTimeMentor" ></bean>
 
 
 

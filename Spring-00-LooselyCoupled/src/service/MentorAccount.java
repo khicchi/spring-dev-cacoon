@@ -1,6 +1,6 @@
 package service;
 
-import interfaces.Mentor;
+import com.lespania.interfaces.Mentor;
 
 public class MentorAccount {
 

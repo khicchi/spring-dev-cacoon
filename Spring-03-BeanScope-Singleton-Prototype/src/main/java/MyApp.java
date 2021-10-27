@@ -1,7 +1,7 @@
-import interfaces.Course;
+import com.lespania.interfaces.Course;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import services.Selenium;
+import com.lespania.services.Selenium;
 
 public class MyApp {
 

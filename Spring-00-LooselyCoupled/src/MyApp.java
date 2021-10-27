@@ -1,6 +1,6 @@
 import service.FullTimeMentor;
 
-import interfaces.Mentor;
+import com.lespania.interfaces.Mentor;
 import service.MentorAccount;
 
 
