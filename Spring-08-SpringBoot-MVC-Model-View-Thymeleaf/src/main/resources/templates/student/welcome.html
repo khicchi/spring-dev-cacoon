@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>welc stud</title>
 </head>
 <body>
-        <p>welcome student</p>
+        <p th:text="${name}">welcome student</p>
+        <p th:text="${course}"></p>
+        <p th:text="${id}"></p>
+        <p th:text="${numbers}"></p>
+        <p th:text="${birthday}"></p>
+        <p th:text="${student}"></p>
+        <p th:text="${'hello ' + student.firstName}"></p>
+        <p th:text="${student.getFirstName()}"></p>
+        <p th:text="${student.firstName}"></p>
+
+<!--Link-->
+        <a th:href="@{https://www.google.com}">Googlleee</a>
+        <br>
+        <a th:href="@{/student/register}">Student  register</a>
+
+<!--Adding parameters to link-->
+        <a th:href="@{/student/welcome(id=3)}">Student coming with id 3</a>
+        <a th:href="@{/student/welcome(id=${student.id})}">Student coming with id from current student object</a>
+
+
+<!--Iteration-->
+<ul>
+    <li th:each="nums: ${mumbers}" th:text="${nums}"></li>
+</ul>
+
+
 </body>
 </html>

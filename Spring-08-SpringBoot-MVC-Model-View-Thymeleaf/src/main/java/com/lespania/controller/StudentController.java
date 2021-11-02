@@ -18,7 +18,7 @@ public class StudentController {
     @GetMapping("/welcome")
     public String homePage(Model model){
 
-       model.addAttribute("name","Cybertek");
+       model.addAttribute("name","kicchi");
        model.addAttribute("course","MVC");
 
        String subject = "Collections";
@@ -34,7 +34,7 @@ public class StudentController {
         numbers.add(7);
         numbers.add(200);
         numbers.add(700);
-        model.addAttribute("numbers",numbers);
+        model.addAttribute("mumbers",numbers);
 
         //print your birthday
         LocalDate birthday = LocalDate.now().minusYears(42);
