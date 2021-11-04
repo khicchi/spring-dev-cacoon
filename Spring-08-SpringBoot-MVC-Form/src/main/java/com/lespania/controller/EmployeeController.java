@@ -1,5 +1,6 @@
 package com.lespania.controller;
 
+import com.lespania.datagenerator.DataGenerator;
 import com.lespania.model.Employee;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,7 @@ public class EmployeeController {
     public String employeeCreate(Model model){
 
         model.addAttribute("employee",new Employee());
-
+        model.addAttribute("stateList", DataGenerator.getStateList());
 
         return "employee/employee-create";
     }
