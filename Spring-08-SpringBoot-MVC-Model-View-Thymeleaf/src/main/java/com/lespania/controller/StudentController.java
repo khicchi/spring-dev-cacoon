@@ -17,7 +17,7 @@ public class StudentController {
 
     @GetMapping("/welcome")
     public String homePage(Model model){
-
+//http://127.0.0.1:8080/student/welcome
        model.addAttribute("name","kicchi");
        model.addAttribute("course","MVC");
 

@@ -26,9 +26,12 @@
 
 
 <!--Iteration-->
-<ul>
-    <li th:each="nums: ${mumbers}" th:text="${nums}"></li>
-</ul>
+        <ul>
+            <li th:each="nums: ${mumbers}" th:text="${nums}"></li>
+        </ul>
+
+<!--Fragment-->
+<div th:replace="fragments/footer :: kicchi"></div>
 
 
 </body>

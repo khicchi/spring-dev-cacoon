@@ -16,7 +16,7 @@ public class MentorController {
 
     @GetMapping("/list")
     public String showTable(Model model){
-
+//http://127.0.0.1:8080/mentor/list
         List<Mentor> mentorList = new ArrayList<>();
         mentorList.add(new Mentor("Mike","Smith",45, Gender.MALE));
         mentorList.add(new Mentor("Tom","Hanks",65, Gender.MALE));
@@ -24,7 +24,7 @@ public class MentorController {
 
         model.addAttribute("mentors",mentorList);
 
-        return "mentor/mentor-list";
+        return "mentor/mentorList";
 
 
     }
