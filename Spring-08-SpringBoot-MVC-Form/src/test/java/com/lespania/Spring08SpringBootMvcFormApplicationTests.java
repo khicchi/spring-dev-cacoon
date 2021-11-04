@@ -1,4 +1,4 @@
-package com.lespania.spring08springbootmvcform;
+package com.lespania;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
