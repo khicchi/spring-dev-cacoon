@@ -237,6 +237,8 @@ GROUP BY department
 HAVING COUNT(*)<36
 ORDER BY department;
 
+select position('w' in 'saawre');
+
 --show all unique domain and number of employees
 SELECT COUNT(*),SUBSTRING(email,POSITION('@' IN email) +1) email_domain
 FROM employees
@@ -252,6 +254,9 @@ WHERE department NOT IN(SELECT department FROM departments);
 
 SELECT *
 FROM (SELECT * FROM employees WHERE salary>150000) a;
+
+select * from departments d;
+select distinct d.division from departments d;
 
 --Return all employees that work in electronic division
 SELECT *
@@ -272,6 +277,19 @@ WHERE region_id IN(SELECT region_id FROM regions WHERE country='Asia' OR country
 --Write a query that returns all of those employees that work in the kids division AND
 --the dates at which those employees were hired is greater than all of the hire_dates of employees
 --who work in the maintenance department
+
+SELECT first_name, department
+FROM employees
+WHERE department =
+    ANY(SELECT department FROM departments WHERE division='Kids');
+
+SELECT first_name, hire_date
+FROM employees
+WHERE hire_date >
+    ALL(SELECT hire_date FROM employees WHERE department='Maintenance')
+ORDER BY hire_date asc;
+
+SELECT hire_date FROM employees WHERE department='Maintenance' order by hire_date desc;
 
 SELECT *
 FROM employees
