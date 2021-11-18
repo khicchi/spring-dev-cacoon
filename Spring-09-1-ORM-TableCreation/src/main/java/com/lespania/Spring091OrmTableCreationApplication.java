@@ -1,4 +1,4 @@
-package com.lespania.spring091ormtablecreation;
+package com.lespania;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
