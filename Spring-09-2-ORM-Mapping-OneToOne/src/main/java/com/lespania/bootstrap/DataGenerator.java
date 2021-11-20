@@ -53,11 +53,11 @@ public class DataGenerator implements CommandLineRunner {
         e4.setDepartment(d4);
         e5.setDepartment(d5);
 
-//        e1.setRegion(r1);
-//        e2.setRegion(r2);
-//        e3.setRegion(r3);
-//        e4.setRegion(r4);
-//        e5.setRegion(r5);
+        e1.setRegion(r1);
+        e2.setRegion(r2);
+        e3.setRegion(r3);
+        e4.setRegion(r4);
+        e5.setRegion(r5);
 
 
         employeeList.addAll(Arrays.asList(e1,e2,e3,e4,e5));
