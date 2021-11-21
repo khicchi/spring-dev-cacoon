@@ -23,6 +23,7 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private List<Address> addresses;
 
+    //    @OneToMany(mappedBy = "person")
 
       //case-1
 //    @OneToMany(cascade = CascadeType.ALL)
