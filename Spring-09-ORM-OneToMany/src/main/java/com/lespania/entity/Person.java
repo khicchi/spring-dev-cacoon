@@ -23,12 +23,13 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private List<Address> addresses;
 
+//    @OneToMany(mappedBy = "person")
+//    private List<Address> addresses;
+
     //    @OneToMany(mappedBy = "person")
 
       //case-1
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name="person_id")
-//    private List<Address> addresses;
+    //@OneToMany(cascade = CascadeType.ALL)
 
     public Person(String firstName, String lastName) {
         this.firstName = firstName;
