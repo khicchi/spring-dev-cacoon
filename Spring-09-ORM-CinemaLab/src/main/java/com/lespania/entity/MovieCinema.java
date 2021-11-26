@@ -15,10 +15,18 @@ public class MovieCinema {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long movieCinemaId;
+    private Long id;
 
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime dateTime;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cinema_id")
+    private Cinema cinema;
 
     public MovieCinema(LocalDateTime dateTime) {
         this.dateTime = dateTime;
