@@ -1,6 +1,6 @@
 package com.lespania.entity;
 
-import com.cybertek.enums.Gender;
+import com.lespania.enums.Gender;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
