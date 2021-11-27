@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
-//@Component
+@Component
 public class DataGenerator implements CommandLineRunner {
 
     private MovieRepository movieRepository;
