@@ -2,53 +2,96 @@ package com.lespania.repository;
 
 import com.lespania.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
 
-    //Display all employees with email address ''
-    List<Employee> findByEmail(String email);
+    @Query("SELECT e FROM Employee e WHERE e.email = 'dtrail8@tamu.edu'")
+    Employee getEmployeeDetail();
 
-    //Display all employees with first name '' and last name '', also show all employees with a email address ''
-    List<Employee> findByFirstNameAndLastNameOrEmail(String firstName,String lastName,String email);
+    @Query("SELECT e.salary FROM Employee e WHERE e.email = 'dtrail8@tamu.edu' ")
+    Integer getEmployeeSalary();
 
-    //Display all employees that first name is not ''
-    List<Employee> findByFirstNameIsNot(String firstName);
+    //single bind paramater
+    @Query("SELECT e FROM Employee e WHERE e.email = ?1 ")
+    Optional<Employee> getEmployeeByEmail(String email);
 
-    //Display all employees where last name starts with ''
-    List<Employee> findByLastNameStartsWith(String pattern);
+    //multiple bind parameter
+    @Query("SELECT e FROM Employee e WHERE e.email=?1 AND e.salary=?2")
+    Employee getEmployeeByEmailAndSalary(String email,int salary);
 
-    //Display all employees with salaries higher than ''
-    List<Employee> findBySalaryGreaterThan(Integer salary);
+    //single named parameter
+    @Query("SELECT e FROM Employee e WHERE e.salary=:salary")
+    Employee getEmployeeBySalary(@Param("salary") int salary);
 
-    //Display all employees with salaries less than ''
-    List<Employee> findBySalaryLessThanEqual(Integer salary);
+    //multiple named parameters
+    @Query("SELECT e FROM Employee e WHERE e.firstName=:name OR e.salary=:salary")
+    List<Employee> getEmployeeByFirstNameOrSalary(@Param("name") String name,@Param("salary") int salary);
 
-    //Display all employees that has been hired between '' and ''
-    List<Employee> findByHireDateBetween(LocalDate startDate, LocalDate endDate);
+    //Not Equal
+    @Query("SELECT e FROM Employee e WHERE e.salary <> ?1")
+    List<Employee> getEmployeeBySalaryNotEqual(int salary);
 
-    //Display all employees where salaries greater and equal to '' in order
-    List<Employee> findBySalaryIsGreaterThanEqualOrderBySalaryDesc(Integer salary);
+    //Like / Contains / StartsWith / Ends With
+    @Query("SELECT e FROM Employee e WHERE e.firstName LIKE ?1")
+    List<Employee> getEmployeeByFirstNameLike(String patter);
 
-    //Display top unique 3 employees that is making less than ''
-    List<Employee> findDistinctTop3BySalaryLessThan(Integer salary);
+    //Less Than
+    @Query("SELECT e FROM Employee e WHERE e.salary < ?1")
+    List<Employee> getEmployeeBySalaryLessThan(int salary);
 
-    //Display all employees that do not have email address
-    List<Employee> findByEmailIsNull();
+    //Greater Than
+    @Query("SELECT e FROM Employee e WHERE e.salary > ?1")
+    List<Employee> getEmployeeBySalaryGreaterThan(Integer salary);
 
+    //Between
+    @Query("SELECT e FROM Employee e WHERE e.salary BETWEEN ?1 AND ?2")
+    List<Employee> getEmployeeBySalaryBetween(int salary1,int salary2);
 
+    //Before
+    @Query("SELECT e FROM Employee e WHERE e.hireDate > ?1")
+    List<Employee> getEmployeeByHireDateBefore(LocalDate date);
 
+    //Null
+    @Query("SELECT e FROM Employee e WHERE e.email IS NULL")
+    List<Employee> getEmployeeByEmailIsNull();
 
+    //Not Null
+    @Query("SELECT e FROM Employee e WHERE e.email IS NOT NULL")
+    List<Employee> getEmployeeByEmailIsNotNull();
 
+    //Sort Salary in ascending order
+    @Query("SELECT e FROM Employee e ORDER BY e.salary")
+    List<Employee> getEmployeeBySalaryOrderByAsc();
 
+    //Sort Salary in descending order
+    @Query("SELECT e FROM Employee e ORDER BY e.salary DESC ")
+    List<Employee> getEmployeeBySalaryOrderByDesc();
 
+    //Native Query
+    @Query(value = "SELECT * FROM employees WHERE salary = ?1",nativeQuery = true )
+    List<Employee> readEmployeeBySalary(int salary);
 
+    @Modifying
+    @Transactional
+    @Query("UPDATE Employee e SET e.email ='admin@email.com' WHERE e.id=:id")
+    void updateEmployeeJPQL(@Param("id") Integer id);
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE employees SET email='admin@email.com' WHERE id=:id",nativeQuery = true)
+    void updateEmployeeNativeQuery(@Param("id") Integer id);
 
-
+    //Named Query
+    List<Employee> retrieveEmployeeSalaryGreaterThan(Integer salary);
 
 }
