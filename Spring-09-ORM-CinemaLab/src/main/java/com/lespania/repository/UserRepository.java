@@ -15,12 +15,17 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
     //    Write a derived query to read a user with an username?
     Optional<User> findByUsername(String username);
+
+    List<User> findAllByAccountNameContaining(String name);
+
     //    Write a derived query to list all users that contain a specific name?
-    List<User> findAllByAccountDetailsNameContaining(String name);
+    //List<User> findAllByAccountDetailsNameContaining(String name);
     //    Write a derived query to list all users that contain a specific name in the ignore case mode?
-    List<User> findAllByAccountDetailsNameContainingIgnoreCase(String name);
+    //List<User> findAllByAccountDetailsNameContainingIgnoreCase(String name);
     //    Write a derived query to list all users with an age greater than a specified age?
-    List<User> findAllByAccountDetailsAgeGreaterThan(Integer age);
+    //List<User> findAllByAccountDetailsAgeGreaterThan(Integer age);
+
+
     //    ----------------------------------- JPQL QUERIES--------------------------
 //    Write a JPQL query that returns a user read by email?
     @Query("SELECT u FROM User u WHERE u.email = ?1")

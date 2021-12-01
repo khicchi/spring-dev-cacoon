@@ -1,6 +1,7 @@
 package com.lespania.repository;
 
 import com.lespania.entity.Ticket;
+import com.lespania.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,8 @@ import java.util.List;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
     // ------------------- DERIVED QUERIES ------------------- //
+
+    List<Ticket> findAllByUserAccountCity(String cityName);
 
     //Write a derived query to count how many tickets a user bought
     Integer countAllByUserId(Long userId);

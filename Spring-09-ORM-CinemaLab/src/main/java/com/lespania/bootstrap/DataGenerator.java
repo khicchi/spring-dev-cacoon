@@ -150,11 +150,11 @@ public class DataGenerator implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        createUsers();
-        createCinemasAndLocations();
-        createMoviesAndGenres();
-        scheduleMovies();
-        bookAMovie();
+//        createUsers();
+//        createCinemasAndLocations();
+//        createMoviesAndGenres();
+//        scheduleMovies();
+//        bookAMovie();
     }
     /**
      * Create users.

@@ -1,9 +1,6 @@
 package com.lespania;
 
-import com.lespania.repository.AccountRepository;
-import com.lespania.repository.CinemaRepository;
-import com.lespania.repository.MovieCinemaRepository;
-import com.lespania.repository.TicketRepository;
+import com.lespania.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +19,9 @@ public class Spring09OrmCinemaLabApplication {
     MovieCinemaRepository movieCinemaRepository;
     @Autowired
     TicketRepository ticketRepository;
+    @Autowired
+    UserRepository userRepository;
+
 
     public static void main(String[] args) {
         SpringApplication.run(Spring09OrmCinemaLabApplication.class, args);
@@ -36,5 +36,9 @@ public class Spring09OrmCinemaLabApplication {
         System.out.println(ticketRepository.fetchAllTicketsByUserJPQL(4l));
         System.out.println(ticketRepository.fetchAllTicketsWithRangeDates(LocalDateTime.now().minusDays(25),LocalDateTime.now()));
         System.out.println(ticketRepository.retrieveAllBySearchCriteria("it"));
+
+        System.out.println(userRepository.findAllByAccountNameContaining("dana"));
+
+        System.out.println(ticketRepository.findAllByUserAccountCity("LOUISVILLE"));
     }
 }
