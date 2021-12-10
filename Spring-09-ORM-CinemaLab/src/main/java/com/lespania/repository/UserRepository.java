@@ -18,6 +18,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findAllByAccountNameContaining(String name);
 
+    //List<User> findAllByAccountDetails_
+
+    List<User> findAllByAccount_Name(String name);
+
     //    Write a derived query to list all users that contain a specific name?
     //List<User> findAllByAccountDetailsNameContaining(String name);
     //    Write a derived query to list all users that contain a specific name in the ignore case mode?
