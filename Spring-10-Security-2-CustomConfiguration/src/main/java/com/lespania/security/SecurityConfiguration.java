@@ -15,20 +15,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests() //request should be authorized
-                .anyRequest().authenticated() //incoming request be authenticated
-                .and()
-                .httpBasic(); //perform basic http authentication
+        http.authorizeRequests() //request should be authorized
+            .anyRequest().authenticated() //incoming request be authenticated
+            .and()
+            .httpBasic(); //perform basic http authentication
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("admin").password(passwordEncoder().encode("admin123")).roles("ADMIN")
-                .and()
-                .withUser("kicchi").password(passwordEncoder().encode("kicchi123")).roles("USER");
+        auth.inMemoryAuthentication()
+            .withUser("admin").password(
+                    passwordEncoder().encode("admin123")).roles("ADMIN")
+            .and()
+            .withUser("kicchi").password(
+                    passwordEncoder().encode("kicchi123")).roles("USER");
     }
 
     @Bean
