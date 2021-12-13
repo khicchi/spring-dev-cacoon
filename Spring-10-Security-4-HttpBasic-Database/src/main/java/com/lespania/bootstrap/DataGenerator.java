@@ -29,7 +29,7 @@ public class DataGenerator implements CommandLineRunner {
         this.userRepository.deleteAll();
 
         //Create users
-        User employee = new User("ozzy", passwordEncoder.encode("ozzy123"), "USER","");
+        User employee = new User("kicchi", passwordEncoder.encode("kicchi123"), "USER","");
         User admin = new User("admin", passwordEncoder.encode("admin123"),"ADMIN","ACCESS_TEST1,ACCESS_TEST2");
         User manager = new User("manager", passwordEncoder.encode("manager123"),"MANAGER","ACCESS_TEST1");
 
