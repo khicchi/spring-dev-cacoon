@@ -17,8 +17,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserPrincipalDetailsService userPrincipalDetailsService;
 
-
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
