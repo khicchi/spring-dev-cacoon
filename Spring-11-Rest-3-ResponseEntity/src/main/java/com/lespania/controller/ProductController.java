@@ -2,6 +2,7 @@ package com.lespania.controller;
 
 
 import com.lespania.entity.Product;
+import com.lespania.entity.ResponseWrapper;
 import com.lespania.service.ProductService;
 import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import org.springframework.http.HttpHeaders;
@@ -78,7 +79,21 @@ public class ProductController {
 
     }
 
+    @GetMapping("/read")
+    public ResponseEntity<ResponseWrapper> readAllProducts(){
+        return ResponseEntity
+                .ok(new ResponseWrapper("products successfully retrieved",productService.getProducts()));
+    }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ResponseWrapper> deleteProduct2(@PathVariable("id") long id){
+        return ResponseEntity.ok(new ResponseWrapper("product successfully deleted"));
+    }
+
+    @DeleteMapping("/delete2/{id}")
+    public ResponseEntity<ResponseWrapper> deleteProduct3(@PathVariable("id") long id){
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(new ResponseWrapper("product successfully deleted"));
+    }
 
 }
 
