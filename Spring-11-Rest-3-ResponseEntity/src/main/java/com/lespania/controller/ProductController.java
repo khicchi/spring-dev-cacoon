@@ -82,7 +82,8 @@ public class ProductController {
     @GetMapping("/read")
     public ResponseEntity<ResponseWrapper> readAllProducts(){
         return ResponseEntity
-                .ok(new ResponseWrapper("products successfully retrieved",productService.getProducts()));
+                .ok(new ResponseWrapper("products successfully retrieved",
+                                                productService.getProducts()));
     }
 
     @DeleteMapping("/delete/{id}")
