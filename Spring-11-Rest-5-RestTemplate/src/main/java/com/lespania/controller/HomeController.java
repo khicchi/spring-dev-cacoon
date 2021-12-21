@@ -1,5 +1,8 @@
 package com.lespania.controller;
 
+import com.lespania.entity.User;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,6 +15,12 @@ public class HomeController {
 
     public HomeController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
+    }
+
+    @GetMapping
+    public User[] readAllUsers(){
+        ResponseEntity<User[]> responseEntity = restTemplate.getForEntity(URI, User[].class);
+        return responseEntity.getBody();
     }
 
 }
