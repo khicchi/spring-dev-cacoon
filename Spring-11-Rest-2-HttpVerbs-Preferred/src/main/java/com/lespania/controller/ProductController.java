@@ -11,24 +11,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-
     private ProductService productService;
-
     public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
+        this.productService = productService;}
 
     @GetMapping(value = "/{id}")
     public Product getProduct(@PathVariable("id") long id){
-
         return productService.getProduct(id);
     }
 
     @GetMapping
     public List<Product> getProducts(){
-
-        return productService.getProducts();
-    }
+        return productService.getProducts();}
 
     @PostMapping
     public  List<Product> createProduct(@RequestBody Product product){
