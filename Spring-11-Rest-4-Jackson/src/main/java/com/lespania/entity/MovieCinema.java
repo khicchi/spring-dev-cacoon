@@ -1,5 +1,6 @@
 package com.lespania.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Entity
+@JsonIgnoreProperties(value={"hibernateLazyInitializer"},ignoreUnknown = true)
 public class MovieCinema {
 
     @Id

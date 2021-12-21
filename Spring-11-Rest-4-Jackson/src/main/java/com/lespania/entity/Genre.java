@@ -1,5 +1,7 @@
 package com.lespania.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
+@JsonIgnoreProperties(value={"hibernateLazyInitializer"},ignoreUnknown = true)
 public class Genre {
 
     @Id
@@ -21,6 +24,7 @@ public class Genre {
     private String name;
 
     @ManyToMany(mappedBy = "genreList")
+    @JsonIgnore
     private List<Movie> movieList = new ArrayList<>();
 
     public Genre(String name) {
