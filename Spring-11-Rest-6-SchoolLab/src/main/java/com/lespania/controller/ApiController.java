@@ -1,10 +1,12 @@
 package com.lespania.controller;
 
+import com.lespania.model.ResponseWrapper;
 import com.lespania.model.Teacher;
 import com.lespania.repository.AddressRepository;
 import com.lespania.repository.ParentRepository;
 import com.lespania.repository.StudentRepository;
 import com.lespania.repository.TeacherRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,4 +32,10 @@ public class ApiController {
         return teacherRepository.findAll();
     }
 
+    @GetMapping("/students")
+    public ResponseEntity<ResponseWrapper> readAllStudents(){
+
+        return ResponseEntity
+                .ok(new ResponseWrapper("students are successfully retrieved",studentRepository.findAll()));
+    }
 }
