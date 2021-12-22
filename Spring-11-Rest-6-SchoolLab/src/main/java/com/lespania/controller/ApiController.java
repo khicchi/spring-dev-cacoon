@@ -1,5 +1,6 @@
 package com.lespania.controller;
 
+import com.lespania.model.Address;
 import com.lespania.model.ResponseWrapper;
 import com.lespania.model.Teacher;
 import com.lespania.repository.AddressRepository;
@@ -8,10 +9,10 @@ import com.lespania.repository.StudentRepository;
 import com.lespania.repository.TeacherRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ApiController {
@@ -48,5 +49,20 @@ public class ApiController {
                 parentRepository.findAll());
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(responseWrapper);
+    }
+
+    @PutMapping("/address/{id}")
+    public Address updateAddress(@PathVariable("id") long id, @RequestBody Address address) throws Exception {
+
+        Optional<Address> foundAddress = addressRepository.findById(id);
+
+        if(!foundAddress.isPresent()){
+            throw new Exception("Address does not exists!");
+        }
+
+        address.setCurrentTemperature(new Address().consumeTemp(address.getCity()));
+        address.setId(foundAddress.get().getId());
+
+        return addressRepository.save(address);
     }
 }
