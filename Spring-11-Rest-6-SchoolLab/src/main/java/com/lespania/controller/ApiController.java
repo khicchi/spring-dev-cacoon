@@ -6,6 +6,7 @@ import com.lespania.repository.AddressRepository;
 import com.lespania.repository.ParentRepository;
 import com.lespania.repository.StudentRepository;
 import com.lespania.repository.TeacherRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,5 +38,15 @@ public class ApiController {
 
         return ResponseEntity
                 .ok(new ResponseWrapper("students are successfully retrieved",studentRepository.findAll()));
+    }
+
+    @GetMapping("/parents")
+    public ResponseEntity<ResponseWrapper> readAllParents(){
+
+        ResponseWrapper responseWrapper = new ResponseWrapper(true,"Parents are successfully retrieved",
+                HttpStatus.ACCEPTED.value(),
+                parentRepository.findAll());
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(responseWrapper);
     }
 }
