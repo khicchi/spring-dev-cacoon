@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lespania</groupId>
-    <artifactId>Spring-11-7-Rest-OpenApi3</artifactId>
+    <artifactId>Spring-11-Rest-70-OpenApi3</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Spring-11-7-Rest-OpenApi3</name>
-    <description>Spring-11-7-Rest-OpenApi3</description>
+    <name>Spring-11-Rest-70-OpenApi3</name>
+    <description>Spring-11-Rest-70-OpenApi3</description>
     <properties>
         <java.version>11</java.version>
     </properties>
