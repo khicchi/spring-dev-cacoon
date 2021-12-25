@@ -1,5 +1,6 @@
 package com.lespania.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lespania.enums.UserRole;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "account_details")
+@JsonIgnoreProperties(value={"hibernateLazyInitializer"},ignoreUnknown = true)
 public class Account {
 
     @Id

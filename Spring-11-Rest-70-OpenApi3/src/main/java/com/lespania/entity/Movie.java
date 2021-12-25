@@ -1,5 +1,6 @@
 package com.lespania.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lespania.enums.MovieState;
 import com.lespania.enums.MovieType;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import java.util.List;
 @Setter
 @Entity
 @NoArgsConstructor
+@JsonIgnoreProperties(value={"hibernateLazyInitializer"},ignoreUnknown = true)
 public class Movie {
 
     @Id
