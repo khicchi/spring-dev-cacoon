@@ -6,9 +6,9 @@ spring:
   profiles:
     active: default
   datasource:
-    url: jdbc:postgresql://localhost:5432/cybertek
+    url: jdbc:postgresql://localhost:5432/kicchi-jwt
     username: postgres
-    password: admin
+    password: postgres
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
     data: classpath:data.sql
