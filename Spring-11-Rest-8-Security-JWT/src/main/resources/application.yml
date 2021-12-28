@@ -10,8 +10,6 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
-    initialization-mode: always
-    data: classpath:data.sql
   jpa:
     properties:
      hibernate:
@@ -19,6 +17,11 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: false
+    defer-datasource-initialization: true
+  sql:
+    init:
+      data-locations: classpath:data.sql
+      mode: always
 security:
   jwt:
     secret-key: kicchi
