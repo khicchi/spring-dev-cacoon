@@ -46,7 +46,8 @@ public class SecurityFilter extends OncePerRequestFilter {
             if (jwtUtil.validateToken(token, userDetails) && checkIfUserIsValid(username)) {
 
                 UsernamePasswordAuthenticationToken currentUser =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                        new UsernamePasswordAuthenticationToken(userDetails, null,
+                                userDetails.getAuthorities());
                 currentUser
                         .setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                 SecurityContextHolder.getContext().setAuthentication(currentUser);
@@ -57,6 +58,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     private boolean checkIfUserIsValid(String username) {
         User currentUser = securityService.loadUser(username);
-        return currentUser != null && currentUser.getIsVerified() && currentUser.getState() == UserState.ACTIVE;
+        return currentUser != null && currentUser.getIsVerified() &&
+                currentUser.getState() == UserState.ACTIVE;
     }
 }

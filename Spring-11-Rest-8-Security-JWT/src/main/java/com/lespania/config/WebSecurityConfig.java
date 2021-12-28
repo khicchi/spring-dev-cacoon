@@ -1,5 +1,6 @@
 package com.lespania.config;
 
+import com.lespania.service.SecurityFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private SecurityFilter securityFilter;
 
     @Override
     @Bean
@@ -42,5 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest()
                 .authenticated();
+
+        http.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
