@@ -21,13 +21,9 @@ import java.util.Optional;
 public class ExceptionMessageHandler {
 
     @ExceptionHandler(ServiceException.class)
-    public ResponseEntity<ResponseWrapper> serviceException(ServiceException se) {
+    public ResponseEntity<ResponseWrapper> serviceException(ServiceException se){
         String message = se.getMessage();
-        return new ResponseEntity<>(ResponseWrapper.builder()
-                .success(false).
-                code(HttpStatus.CONFLICT.value())
-                .message(message).build(),
-                HttpStatus.CONFLICT);
+        return new ResponseEntity<>(ResponseWrapper.builder().success(false).code(HttpStatus.CONFLICT.value()).message(message).build(),HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
@@ -36,8 +32,9 @@ public class ExceptionMessageHandler {
         return new ResponseEntity<>(ResponseWrapper.builder().success(false).code(HttpStatus.FORBIDDEN.value()).message(message).build(),HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(BadCredentialsException.class)
+    @ExceptionHandler({Exception.class, RuntimeException.class, Throwable.class, BadCredentialsException.class})
     public ResponseEntity<ResponseWrapper> genericException(Throwable e, HandlerMethod handlerMethod) {
+
         Optional<DefaultExceptionMessageDto> defaultMessage = getMessageFromAnnotation(handlerMethod.getMethod());
         if (defaultMessage.isPresent() && !ObjectUtils.isEmpty(defaultMessage.get().getMessage())) {
             ResponseWrapper response = ResponseWrapper
@@ -48,16 +45,10 @@ public class ExceptionMessageHandler {
                     .build();
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(ResponseWrapper.builder()
-                .success(false)
-                .message("Action failed: An error occurred!")
-                .code(HttpStatus.INTERNAL_SERVER_ERROR.value()).build(),
-                                                    HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(ResponseWrapper.builder().success(false).message("Action failed: An error occurred!").code(HttpStatus.INTERNAL_SERVER_ERROR.value()).build(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
     private Optional<DefaultExceptionMessageDto> getMessageFromAnnotation(Method method) {
-        com.lespania.annotation.DefaultExceptionMessage defaultExceptionMessage =
-                method.getAnnotation(com.lespania.annotation.DefaultExceptionMessage.class);
+        com.cybertek.annotation.DefaultExceptionMessage defaultExceptionMessage = method.getAnnotation(com.cybertek.annotation.DefaultExceptionMessage.class);
         if (defaultExceptionMessage != null) {
             DefaultExceptionMessageDto defaultExceptionMessageDto = DefaultExceptionMessageDto
                     .builder()
