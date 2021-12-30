@@ -21,7 +21,7 @@ public class OpenApiConfig {
         securitySchemeItem.setIn(SecurityScheme.In.HEADER);
         securitySchemeItem.setName("Authorization");
         io.swagger.v3.oas.models.info.Info infoVersion = new
-                io.swagger.v3.oas.models.info.Info().title("Cybertek API").version("snapshot");
+                io.swagger.v3.oas.models.info.Info().title("Kicchi API").version("snapshot");
         SecurityRequirement securityItem = new
                 SecurityRequirement().addList("bearer-jwt", Arrays.asList("read","write"));
 
