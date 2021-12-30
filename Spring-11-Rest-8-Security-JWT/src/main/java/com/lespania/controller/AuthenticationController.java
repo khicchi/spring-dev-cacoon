@@ -1,5 +1,6 @@
 package com.lespania.controller;
 
+import com.lespania.annotation.DefaultExceptionMessage;
 import com.lespania.entity.AuthenticationRequest;
 import com.lespania.entity.ResponseWrapper;
 import com.lespania.entity.User;
@@ -24,7 +25,7 @@ public class AuthenticationController {
     @Autowired
     private JWTUtil jwtUtil;
 
-
+    @DefaultExceptionMessage(defaultMessage = "Hey, bad credentials :(")
     @PostMapping("/authenticate")
     public ResponseEntity<ResponseWrapper> doLogin(@RequestBody AuthenticationRequest authenticationRequest){
 

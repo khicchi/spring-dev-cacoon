@@ -30,4 +30,13 @@ public class UserController {
 
         return ResponseEntity.ok(new ResponseWrapper("Done",users));
     }
+
+    @GetMapping("/readAllForAdmin")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<ResponseWrapper> readAllForAdmin(){
+
+        List<User> users = userService.getAll();
+
+        return ResponseEntity.ok(new ResponseWrapper("Done",users));
+    }
 }
