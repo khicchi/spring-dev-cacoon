@@ -110,4 +110,20 @@ public class LoggingAspect {
         logger.info("After Throwing(Send Email to L2 Team) -> Method: {} - Exception : {}",
                 joinPoint.getSignature().toShortString(),exception.getMessage());
     }
+
+    //after
+    @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
+    private void anyGetPutProductOperation2(){}
+
+    @After("anyGetPutProductOperation2()")
+    public void afterControllerAdvice(JoinPoint joinPoint){
+        logger.info("After finally -> Method : {} - results :{}",
+                joinPoint.getSignature().toShortString());
+    }
+
+    @After("anyGetPutProductOperation2()")
+    public void afterControllerAdvice2(JoinPoint joinPoint){
+        logger.info("After finally -> Method : {} - results :{}",
+                joinPoint.getSignature().toShortString());
+    }
 }
