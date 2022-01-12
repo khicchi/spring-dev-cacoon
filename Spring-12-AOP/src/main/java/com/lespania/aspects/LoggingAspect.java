@@ -32,14 +32,14 @@ public class LoggingAspect {
     }
 
     //    execution
-    @Pointcut("execution(* com.lespania.controller.ProductController.up*(..))")
-    private void anyUpdateOperation(){}
-
-    @Before("anyUpdateOperation()")
-    public void beforeControllerAdvice(JoinPoint joinPoint){
-        logger.info("Before -> Method {} - Arguments : {} - Target : {}",
-                joinPoint, joinPoint.getArgs(), joinPoint.getTarget());
-    }
+//    @Pointcut("execution(* com.lespania.controller.ProductController.up*(..))")
+//    private void anyUpdateOperation(){}
+//
+//    @Before("anyUpdateOperation()")
+//    public void beforeControllerAdvice(JoinPoint joinPoint){
+//        logger.info("Before -> Method {} - Arguments : {} - Target : {}",
+//                joinPoint, joinPoint.getArgs(), joinPoint.getTarget());
+//    }
 
     @Pointcut("execution(* com.lespania.repository.ProductRepository.findById(Long))")
     private void anyProductRepositoryFindById(){}
@@ -55,15 +55,30 @@ public class LoggingAspect {
 //    }
 
     //within
+    //all the classes inside the controller package (including all subpackages)
     @Pointcut("within(com.lespania.controller..*)")
     private void anyControllerOperation(){}
 
+    //all classes with @Service annotation
     @Pointcut("@within(org.springframework.stereotype.Service)")
     private void anyServiceAnnotatedOperation(){}
 
+    //this advice's target is anyServiceAnnotatedOperation() pointcut or
+    // anyControllerOperation() pointcut
     @Before("anyServiceAnnotatedOperation() || anyControllerOperation() ")
     public void beforeControllerAdvice2(JoinPoint joinPoint){
-        logger.info("Before -> Method : {} - Arguments : {} - Target : {}",joinPoint,joinPoint.getArgs(),joinPoint.getTarget());
+        logger.info("Before -> Method : {} - Arguments : {} - Target : {}",
+                joinPoint, joinPoint.getArgs(), joinPoint.getTarget());
     }
 
+    //annotation
+    //
+    @Pointcut("@annotation(org.springframework.web.bind.annotation.DeleteMapping)")
+    private void anyDeleteProductOperation(){}
+
+    @Before("anyDeleteProductOperation()")
+    public void beforeControllerAdvice(JoinPoint joinPoint){
+        logger.info("Before -> Method : {} - Arguments : {} - Target : {}",
+                joinPoint, joinPoint.getArgs(), joinPoint.getTarget());
+    }
 }
