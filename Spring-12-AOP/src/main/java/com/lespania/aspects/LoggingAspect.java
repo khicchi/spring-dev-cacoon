@@ -3,10 +3,7 @@ package com.lespania.aspects;
 import com.lespania.controller.ProductController;
 import com.lespania.entity.Product;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
@@ -90,15 +87,27 @@ public class LoggingAspect {
     @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
     private void anyGetProductOperation(){}
 
-    @AfterReturning(pointcut = "anyGetProductOperation()",returning = "results")
-    public void afterReturningControllerAdvice(JoinPoint joinPoint, Product results){
+    //returning part will process the returning type
+    @AfterReturning(pointcut = "anyGetProductOperation()", returning = "product")
+    public void afterReturningControllerAdvice(JoinPoint joinPoint, Product product){
         logger.info("After Returning(Mono Result) -> Method : {} - results :{}",
-                joinPoint.getSignature().toShortString(), results);
+                joinPoint.getSignature().toShortString(), product);
     }
 
-    @AfterReturning(pointcut = "anyGetProductOperation()",returning = "results")
+    //returning part will process the returning type
+    @AfterReturning(pointcut = "anyGetProductOperation()", returning = "results")
     public void afterReturningControllerAdvice2(JoinPoint joinPoint, List<Product> results){
         logger.info("After Returning(List Result) -> Method : {} - results :{}",
                 joinPoint.getSignature().toShortString(), results);
+    }
+
+    //after throwing
+    @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
+    private void anyGetPutProductOperation(){}
+
+    @AfterThrowing(pointcut = "anyGetPutProductOperation()", throwing = "exception")
+    public void afterThrowingControllerAdvice(JoinPoint joinPoint,RuntimeException exception){
+        logger.info("After Throwing(Send Email to L2 Team) -> Method: {} - Exception : {}",
+                joinPoint.getSignature().toShortString(),exception.getMessage());
     }
 }
