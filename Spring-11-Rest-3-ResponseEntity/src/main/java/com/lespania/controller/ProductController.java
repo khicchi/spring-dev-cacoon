@@ -33,7 +33,7 @@ public class ProductController {
     @GetMapping
     public  ResponseEntity<List<Product>> getProducts(){
         HttpHeaders responseHttpHeaders = new HttpHeaders();
-        responseHttpHeaders.set("Version","Cybertek.v1");
+        responseHttpHeaders.set("Version","Kicchi.v1");
         responseHttpHeaders.set("Operation","Get List");
 
         return ResponseEntity
