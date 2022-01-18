@@ -3,12 +3,15 @@ package com.lespania.implementation;
 import com.lespania.mapper.MapperUtil;
 import com.lespania.repository.UserRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
 
     @Mock
@@ -24,9 +27,9 @@ class UserServiceImplTest {
     void deleteByUserName() {
         userService.deleteByUserName("mike@cybertek.com");
 
-        //        verify(userRepository).deleteByUserName("mike@cybertek.com");
-        verify(userRepository,times(2)).deleteByUserName("mike@cybertek.com");
-        verify(userRepository,atLeastOnce()).deleteByUserName("mike@cybertek.com");
-        verify(userRepository,atMost(5)).deleteByUserName("mike@cybertek.com");
+        verify(userRepository).deleteByUserName("mike@cybertek.com");
+//        verify(userRepository,times(2)).deleteByUserName("mike@cybertek.com");
+//        verify(userRepository,atLeastOnce()).deleteByUserName("mike@cybertek.com");
+//        verify(userRepository,atMost(5)).deleteByUserName("mike@cybertek.com");
     }
 }
