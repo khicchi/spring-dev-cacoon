@@ -66,7 +66,8 @@ class StudentControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/data").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().json("[{\"id\":0,\"firstName\":\"ozzy\",\"lastName\":\"can\",\"age\":20},{\"id\":0,\"firstName\":\"tom\",\"lastName\":\"hanks\",\"age\":50}]"))
+                .andExpect(content().json("[{\"id\":0,\"firstName\":\"ozzy\",\"lastName\":\"can\",\"age\":20},"+
+                        "{\"id\":0,\"firstName\":\"tom\",\"lastName\":\"hanks\",\"age\":50}]"))
                 .andReturn();
     }
 
