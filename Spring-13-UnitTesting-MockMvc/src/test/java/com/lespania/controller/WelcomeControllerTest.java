@@ -20,18 +20,20 @@ class WelcomeControllerTest {
 
     @Test
     void welcome() throws Exception {
-        //call /welcome end point
-        // and verify "welcome"
+        //My goal is to call "/welcome" endpoint and verify "welcome" message is returned
 
-        RequestBuilder request = MockMvcRequestBuilders.get("/welcome").accept(MediaType.APPLICATION_JSON);
+        RequestBuilder request = MockMvcRequestBuilders
+                                        .get("/welcome")
+                                        .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(request).andReturn();
-        assertEquals("welcome",result.getResponse().getContentAsString());
-
+        assertEquals("welcome2",result.getResponse().getContentAsString());
     }
 
     @Test
     void welcome2() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.get("/welcome").accept(MediaType.APPLICATION_JSON);
+        RequestBuilder request = MockMvcRequestBuilders
+                                            .get("/welcome").
+                                            accept(MediaType.APPLICATION_JSON);
 
         mockMvc.perform(request)
                 .andExpect(status().isOk())
